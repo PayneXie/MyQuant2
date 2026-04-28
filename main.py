@@ -384,18 +384,13 @@ def etf_v2_signal_text(as_of: pd.Timestamp | None) -> str:
     return _format_lines(lines)
 
 
-@register("helloworld", "YourName", "一个简单的 Hello World 插件", "1.0.0")
+@register("etf", "YourName", "成交额策略V2信号查询", "1.0.0")
 class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
 
     async def initialize(self):
         _disable_akshare_tqdm()
-
-    @filter.command("helloworld")
-    async def helloworld(self, event: AstrMessageEvent):
-        user_name = event.get_sender_name()
-        yield event.plain_result(f"Hello, {user_name}!")
 
     @filter.command("etf")
     async def etf(self, event: AstrMessageEvent):
